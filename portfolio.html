@@ -1,140 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Simple Portfolio</title>
-<style>
-body {
-    margin: 0;
-    background-color: aliceblue;
-}
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Portfolio</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: aliceblue;
+      }
 
-.topSection, .contactSection{
-    background-color: black;
-    padding: 50px;
-    text-align: center;
-    margin: 0px;
-}
+      .topSection,
+      .contactSection {
+        background-color: black;
+        padding: 50px;
+        text-align: center;
+        margin: 0px;
+      }
 
-.aboutSection {
-    text-align: center;
-    margin-top: 50px;
-    padding-bottom: 10px;
-}
+      .aboutSection {
+        text-align: center;
+        margin-top: 50px;
+        padding-bottom: 10px;
+      }
 
-.profileImage {
-    margin-bottom: 30px;
-    border-radius: 100%;
-    width: 100px; 
-    height: 100px;
-}
+      .profileImage {
+        margin-bottom: 30px;
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+      }
 
-.projectSection {
-    text-align: center;
-    padding: 30px;
-    background-color: white
-}
-    
-.projectCard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px; 
-    padding-left: 40px;
-    padding-right: 40px;
-}   
+      .projectSection {
+        text-align: center;
+        padding: 30px;
+        background-color: white;
+      }
 
-.projectCard > div {
-    padding: 10px;
-    text-align: left;
-    background-color: aliceblue
-}
+      .projectCard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      .projectCard > div {
+        padding: 10px;
+        text-align: left;
+        background-color: aliceblue;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      }
 
-.skillSection {
-    text-align: center;
-    padding-bottom: 20px;
-}
+      .skillSection {
+        text-align: center;
+        padding-bottom: 20px;
+      }
 
-.skillsGrid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0px;
-    justify-content: center;
-    align-items: center;
-}
+      .skillsGrid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0px;
+        justify-content: center;
+        align-items: center;
+      }
 
-.skillItem {
-    padding: 5px 10px;
-    text-align: center;
-    word-wrap: break-word;
-    display: inline-block;
-}
+      .skillItem {
+        padding: 5px 10px;
+        text-align: center;
+        word-wrap: break-word;
+        display: inline-block;
+      }
 
-.skillItem > button {
-    background-color: navy;
-    color: 
-    white; 
-    border: none; 
-    font-size: 16px;
-    padding: 8px 10px;
-}
-
-</style>
-</head>
-<body>
-
-  <div class="topSection">
-    <h1 style="color: white;">Adlan Aufar Nourindiaz</h1>
-    <p style="color: white;">A collection of my best work</p>
-  </div>
-
-  <div class="aboutSection">
-    <img class="profileImage" src="https://avatars1.githubusercontent.com/u/11801890?s=460&v=4">
-    <h1 style="margin-top: 20px;">Tentang Saya</h1>
-    <p>Halo Perkenalkan nama saya adalah Adlan Aufar Nourindiaz, saya adalah seorang iOS Developer yang telah memiliki pengalaman sebanyak lebih dari 2 tahun.</p>
-  </div>
-
-<div class="projectSection">
-    <h1>Proyek Terbaru</h1>
-<div class="projectCard">
-  <div>
-    <h2>Title 1</h2>
-    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with de</p>
-  </div>
-  <div>
-    <h2>Title 2</h2>
-    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with de</p>
-  </div>
-  <div>
-    <h2>Title 3</h2>
-    <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with de</p>
-  </div>
-</div>
-</div>
-
-<div class="skillSection">
-    <h1>Keahlian</h1>
-    <div class="skillsGrid">
-        <div class="skillItem">
-            <button>Skill 1</button>
-        </div>
-        <div class="skillItem">
-            <button>Skill 2</button>
-        </div>
-        <div class="skillItem">
-            <button>Skill 3</button>
-        </div>
-        <div class="skillItem">
-            <button>Skill 4</button>
-        </div>
+      .skillItem > button {
+        background-color: navy;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        padding: 8px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topSection">
+      <h1 style="color: white">Adlan Aufar Nourindiaz</h1>
+      <p style="color: white">A collection of my best work</p>
     </div>
-</div>
 
-<div class="contactSection">
-    <h1 style="color: white;">Kontak</h1>
-    <p style="color: white;">Email: adlanaufar@gmail.com</p>
-    <p style="color: white;">Telepon: 09812831</p>
-    <p style="color: white;">Instagram: abcd</p>
-</div>
+    <div class="aboutSection">
+      <img
+        class="profileImage"
+        src="https://avatars1.githubusercontent.com/u/11801890?s=460&v=4"
+        style="border-radius: 50%;"
+      />
+      <h1 style="margin-top: 20px">Tentang Saya</h1>
+      <p>
+        Halo Perkenalkan nama saya adalah Adlan Aufar Nourindiaz, saya adalah
+        seorang iOS Developer yang telah memiliki pengalaman sebanyak lebih dari
+        2 tahun.
+      </p>
+    </div>
 
-</body>
+    <div class="projectSection">
+      <h1>Proyek Terbaru</h1>
+      <div class="projectCard">
+        <div>
+          <h2>Title 1</h2>
+          <p>
+            is simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has been the industry's standard dummy text ever since the
+            1500s, when an unknown printer took a galley of type and scrambled
+            it to make a type specimen book. It has survived not only five
+            centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more
+            recently with de
+          </p>
+        </div>
+        <div>
+          <h2>Title 2</h2>
+          <p>
+            is simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has been the industry's standard dummy text ever since the
+            1500s, when an unknown printer took a galley of type and scrambled
+            it to make a type specimen book. It has survived not only five
+            centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more
+            recently with de
+          </p>
+        </div>
+        <div>
+          <h2>Title 3</h2>
+          <p>
+            is simply dummy text of the printing and typesetting industry. Lorem
+            Ipsum has been the industry's standard dummy text ever since the
+            1500s, when an unknown printer took a galley of type and scrambled
+            it to make a type specimen book. It has survived not only five
+            centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more
+            recently with de
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="skillSection">
+      <h1>Keahlian</h1>
+      <div class="skillsGrid">
+        <div class="skillItem">
+          <button>Skill 1</button>
+        </div>
+        <div class="skillItem">
+          <button>Skill 2</button>
+        </div>
+        <div class="skillItem">
+          <button>Skill 3</button>
+        </div>
+        <div class="skillItem">
+          <button>Skill 4</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="contactSection">
+      <h1 style="color: white">Kontak</h1>
+      <p style="color: white">Email: adlanaufar@gmail.com</p>
+      <p style="color: white">Telepon: 09812831</p>
+      <p style="color: white">Instagram: abcd</p>
+    </div>
+  </body>
 </html>
