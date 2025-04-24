@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon List with Pagination</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 min-h-screen flex flex-col items-center p-4">
+    <h1 class="text-3xl font-bold mb-6">PokéDex</h1>
+
+    <!-- List Container -->
+    <div
+      id="list"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl"
+    ></div>
+
+    <!-- Pagination Controls -->
+    <div class="flex items-center space-x-4 mt-6">
+      <button
+        id="prevBtn"
+        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400"
+        disabled
+      >
+        ◀ Previous
+      </button>
+      <span id="pageInfo" class="font-medium"></span>
+      <button
+        id="nextBtn"
+        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        Next ▶
+      </button>
+    </div>
+
+    <script>
+      const limit = 20;
+      let offset = 0;
+      let totalCount = 0;
+
+      async function fetchPage() {
+        const listEl = document.getElementById("list");
+        listEl.innerHTML = `<p class="col-span-full text-center">Loading…</p>`;
+
+        // 1) Fetch the paged list
+        const res = await fetch(
+          `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+        );
+        if (!res.ok) throw new Error("Failed to load list");
+        const { results, count } = await res.json();
+        totalCount = count;
+
+        // 2) Fetch details in parallel for sprites
+        const details = await Promise.all(
+          results.map((p) => fetch(p.url).then((r) => r.json()))
+        );
+
+        // 3) Render
+        listEl.innerHTML = details
+          .map(
+            (p) => `
+        <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center hover:shadow-lg transition-shadow">
+          <img src="${p.sprites.front_default}" alt="${
+              p.name
+            }" class="w-24 h-24 mb-2"/>
+          <p class="capitalize font-semibold">${p.name}</p>
+          <p class="text-sm text-gray-500">#${String(p.id).padStart(3, "0")}</p>
+        </div>
+      `
+          )
+          .join("");
+
+        updatePaginationUI();
+      }
+
+      function updatePaginationUI() {
+        const prev = document.getElementById("prevBtn");
+        const next = document.getElementById("nextBtn");
+        const info = document.getElementById("pageInfo");
+
+        const currentPage = Math.floor(offset / limit) + 1;
+        const totalPages = Math.ceil(totalCount / limit);
+        info.textContent = `Page ${currentPage} of ${totalPages}`;
+
+        prev.disabled = offset === 0;
+        next.disabled = offset + limit >= totalCount;
+      }
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        if (offset >= limit) {
+          offset -= limit;
+          fetchPage();
+        }
+      });
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        if (offset + limit < totalCount) {
+          offset += limit;
+          fetchPage();
+        }
+      });
+
+      // Initial load
+      fetchPage().catch((err) => {
+        document.getElementById(
+          "list"
+        ).innerHTML = `<p class="col-span-full text-red-500 text-center">${err.message}</p>`;
+      });
+    </script>
+  </body>
+</html>

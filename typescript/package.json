@@ -1,0 +1,24 @@
+{
+  "name": "bc_phincon_qm",
+  "version": "1.0.0",
+  "description": "typescript project",
+  "main": "basicCalculation.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "dev": "npx tsc && node dist/promise.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carpathian00/bc_phincon_qm.git"
+  },
+  "keywords": [
+    "project"
+  ],
+  "author": "aufar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Carpathian00/bc_phincon_qm/issues"
+  },
+  "homepage": "https://github.com/Carpathian00/bc_phincon_qm#readme"
+}
