@@ -54,6 +54,8 @@ function fetchPikachu() {
     });
 }
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    yield fetchDitto();
-    yield fetchPikachu();
+    const ditto = yield fetchDitto();
+    const pikachu = yield fetchPikachu();
+    console.log("Ditto: ", ditto);
+    console.log("Pikachu: ", pikachu);
 }))();
