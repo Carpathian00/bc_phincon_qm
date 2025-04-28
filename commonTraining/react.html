@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      .title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+
+      .counter {
+        color: green;
+      }
+
+      .button {
+        padding: 8px 16px;
+        font-size: 1rem;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .message {
+        color: blue;
+      }
+
+      .context-counter {
+        margin-top: 30px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+      const { useState, createContext, useContext, useReducer } = React;
+
+      // 1. Create the context
+      const CounterContext = createContext();
+
+      function TopNavigationBar({ username }) {
+        return (
+          <div style={{ marginBottom: "20px" }}>
+            <h2>{`Welcome, ${username}!`}</h2>
+          </div>
+        );
+      }
+
+      // 2. Wrap children in the context provider
+      function App() {
+        const [count, setCount] = useState(0);
+        const [showMessage, setShowMessage] = useState(true);
+
+        let color = "red";
+        const titleClass = `title ${count > 5 ? "counter" : ""}`;
+        const messageClass = `message ${!showMessage ? "hidden" : ""}`;
+
+        return (
+          <CounterContext.Provider value={{ count, setCount }}>
+            <TopNavigationBar username="Adrian" />
+
+            <h1 style={{ color }} className={titleClass}>
+              Hello World!
+            </h1>
+
+            <p>{`You've clicked ${count} times.`}</p>
+            <button className={`button`} onClick={() => setCount(count + 1)}>
+              Click me
+            </button>
+
+            <br />
+            <br />
+
+            <button
+              className={`button`}
+              onClick={() => setShowMessage(!showMessage)}
+            >
+              {showMessage ? "Hide" : "Show"} Message
+            </button>
+
+            <p className={messageClass}>This is a toggled message 🎉</p>
+
+            {/* Context consumer component */}
+            <Counter />
+            <Todos />
+          </CounterContext.Provider>
+        );
+      }
+
+      // 3. Consume context inside this component
+      function Counter() {
+        const { count, setCount } = useContext(CounterContext);
+
+        return (
+          <div className="context-counter">
+            <h3>🔁 Shared Counter via Context</h3>
+            <p>Count from context: {count}</p>
+            <button className="button" onClick={() => setCount(count + 1)}>
+              Add from Context
+            </button>
+            <button
+              className="button"
+              onClick={() => setCount(0)}
+              style={{ marginLeft: "10px" }}
+            >
+              Reset
+            </button>
+          </div>
+        );
+      }
+
+      const initialTodos = [
+        {
+          id: 1,
+          title: "Todo 1",
+          complete: false,
+        },
+        {
+          id: 2,
+          title: "Todo 2",
+          complete: false,
+        },
+      ];
+
+      const reducer = (state, action) => {
+        switch (action.type) {
+          case "COMPLETE":
+            return state.map((todo) => {
+              if (todo.id === action.id) {
+                return { ...todo, complete: !todo.complete };
+              } else {
+                return todo;
+              }
+            });
+          default:
+            return state;
+        }
+      };
+
+      function Todos() {
+        const [todos, dispatch] = useReducer(reducer, initialTodos);
+
+        const handleComplete = (todo) => {
+          dispatch({ type: "COMPLETE", id: todo.id });
+        };
+
+        return (
+          <>
+            {todos.map((todo) => (
+              <div key={todo.id}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={todo.complete}
+                    onChange={() => handleComplete(todo)}
+                  />
+                  {todo.title}
+                </label>
+              </div>
+            ))}
+          </>
+        );
+      }
+
+      const container = document.getElementById("mydiv");
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

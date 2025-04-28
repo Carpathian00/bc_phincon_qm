@@ -21,7 +21,7 @@ const myPromise = new Promise((resolve, reject) => {
 //     method: "GET",
 // })
 
-async function fetchDitto() {
+async function fetchDitto(): Promise<any> {
     try {
         const responseDitto = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
         return await responseDitto.json();

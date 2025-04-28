@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
-    "dev": "npx tsc && node dist/promise.js"
+    "dev": "npx tsc && node dist/import.js"
   },
   "repository": {
     "type": "git",

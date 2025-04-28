@@ -1,0 +1,13 @@
+{
+  "name": "try-express",
+  "version": "1.0.0",
+  "description": "Backend Training",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "dev": "npx tsc && node src/dist/server.js"
+  },
+  "author": "aufar",
+  "license": "ISC"
+}
