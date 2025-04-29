@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import db from '../models/index.js';
 import { Request, Response } from 'express';
-const Product = db.products;
+const Product = db.Product;
 
 // Create and Save a new Product
 const controller = {
