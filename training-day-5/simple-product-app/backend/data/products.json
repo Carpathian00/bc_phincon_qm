@@ -1,0 +1,163 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Smartphone X",
+      "description": "Latest smartphone with advanced features",
+      "price": 999.99,
+      "category": "Electronics",
+      "stock": 50,
+      "imageUrl": "https://example.com/images/smartphone.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Laptop Pro",
+      "description": "High-performance laptop for professionals",
+      "price": 1299.99,
+      "category": "Electronics",
+      "stock": 25,
+      "imageUrl": "https://example.com/images/laptop.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Wireless Headphones",
+      "description": "Premium noise-cancelling headphones",
+      "price": 249.99,
+      "category": "Audio",
+      "stock": 100,
+      "imageUrl": "https://example.com/images/headphones.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Fitness Tracker",
+      "description": "Track your activities and health metrics",
+      "price": 129.99,
+      "category": "Wearables",
+      "stock": 75,
+      "imageUrl": "https://example.com/images/tracker.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Smart Watch",
+      "description": "Stay connected with this feature-rich smartwatch",
+      "price": 199.99,
+      "category": "Wearables",
+      "stock": 40,
+      "imageUrl": "https://example.com/images/smartwatch.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Smartphone X",
+      "description": "Latest smartphone with advanced features",
+      "price": 999.99,
+      "category": "Electronics",
+      "stock": 50,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "7",
+      "name": "Laptop Pro",
+      "description": "High-performance laptop for professionals",
+      "price": 1299.99,
+      "category": "Electronics",
+      "stock": 25,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "8",
+      "name": "Wireless Headphones",
+      "description": "Premium noise-cancelling headphones",
+      "price": 249.99,
+      "category": "Audio",
+      "stock": 100,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "9",
+      "name": "Fitness Tracker",
+      "description": "Track your activities and health metrics",
+      "price": 129.99,
+      "category": "Wearables",
+      "stock": 75,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "10",
+      "name": "Smart Watch",
+      "description": "Stay connected with this feature-rich smartwatch",
+      "price": 199.99,
+      "category": "Wearables",
+      "stock": 40,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "11",
+      "name": "Gaming Console Pro",
+      "description": "Next-gen gaming console with 4K graphics",
+      "price": 499.99,
+      "category": "Gaming",
+      "stock": 30,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "12",
+      "name": "Wireless Earbuds",
+      "description": "True wireless earbuds with premium sound",
+      "price": 159.99,
+      "category": "Audio",
+      "stock": 120,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "13",
+      "name": "Smart Speaker",
+      "description": "Voice-controlled smart speaker with AI assistant",
+      "price": 89.99,
+      "category": "Smart Home",
+      "stock": 60,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "14",
+      "name": "4K Smart TV",
+      "description": "65-inch 4K Smart TV with HDR",
+      "price": 899.99,
+      "category": "Electronics",
+      "stock": 15,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "15",
+      "name": "Digital Camera",
+      "description": "Professional mirrorless camera with 4K video",
+      "price": 1499.99,
+      "category": "Photography",
+      "stock": 20,
+      "imageUrl": "/api/placeholder/400/320"
+    },
+    {
+      "id": "16"
+    },
+    {
+      "id": "17"
+    },
+    {
+      "id": "18"
+    },
+    {
+      "id": "19"
+    },
+    {
+      "id": "20"
+    },
+    {
+      "id": "21",
+      "name": "Wireless Earbuds Galaxy Buds",
+      "description": "True wireless earbuds with premium sound",
+      "price": 359.99,
+      "category": "Audio",
+      "stock": 1120,
+      "imageUrl": "/api/placeholder/400/320"
+    }
+  ]
+}
