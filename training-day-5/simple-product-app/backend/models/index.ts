@@ -37,7 +37,7 @@ const loadModels = async () => {
         return (
             !file.startsWith(".") &&
             file !== basename &&
-            file.endsWith(".js") &&
+            file.endsWith(extension) &&
             file.indexOf(".test" + extension) === -1
         );
     });

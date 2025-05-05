@@ -1,6 +1,10 @@
 // Database
 import db from './models/index.js';
 
+// Import environment variables
+import dotenv from 'dotenv';
+dotenv.config();
+
 // server.ts
 import express from 'express';
 import cors from 'cors';

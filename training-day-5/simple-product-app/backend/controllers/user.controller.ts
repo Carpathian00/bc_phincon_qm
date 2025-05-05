@@ -2,9 +2,7 @@
 import { Request, Response } from 'express';
 import db from '../models/index.js';
 import { v4 as uuidv4 } from 'uuid';
-import { UserModel } from '../types/user.type.js';
 
-const User = db.User;
 const Cart = db.Cart;
 
 const controller = {

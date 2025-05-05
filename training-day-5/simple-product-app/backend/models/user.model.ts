@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 
 export default (sequelize: Sequelize) => {
   class User extends Model<UserModel> {
-
     static associate(models: any) {
       User.hasMany(models.Transaction, {
         foreignKey: "userId",
@@ -36,7 +35,7 @@ export default (sequelize: Sequelize) => {
       },
       role: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -51,8 +50,8 @@ export default (sequelize: Sequelize) => {
     },
     {
       sequelize,
-      modelName: "User",
-      tableName: "users",
+      modelName: "User",       // ✅ required for dynamic loading
+      tableName: "users",      // ✅ optional but preferred
     }
   );
 
