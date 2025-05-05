@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import db from "../models/index.js";
-import { v4 as uuidv4 } from "uuid";
 import { Request, Response } from "express";
 
 const Category = db.Category;
@@ -37,7 +36,7 @@ const controller = {
             }
 
             const category = await Category.create({
-                id: uuidv4(),
+                id: "id_category" + String(name).toLowerCase,
                 name,
                 createdAt: new Date(),
                 updatedAt: new Date()
