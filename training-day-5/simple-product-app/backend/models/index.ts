@@ -4,7 +4,7 @@ import path from "path";
 import { Sequelize, DataTypes } from "sequelize";
 import process from "process";
 import configJson from "../config/db.config.js";
-import { DBConfig } from "../types/config.types.js";
+import { DBConfig } from "../types/config.type.js";
 import { pathToFileURL } from "url";
 import { getDirname, getBasename } from "../global/path.global.js";
 

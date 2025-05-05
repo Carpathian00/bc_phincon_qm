@@ -7,7 +7,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 
 // Import routes
-import productsRouter from './routes/products.js';
+import appRouter from './routes/router.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(morgan('dev')); // Logging middleware
 
 // Routes
-app.use('/api/products', productsRouter);
+app.use(appRouter);
 
 // Root route
 app.get('/', (req, res) => {

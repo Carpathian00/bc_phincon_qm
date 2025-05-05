@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Create a new Product
 router.post("/", products.create);
-
+                
 // Retrieve all Products
 router.get("/", products.findAll);
 

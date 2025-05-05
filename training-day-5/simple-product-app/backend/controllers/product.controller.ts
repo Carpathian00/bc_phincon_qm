@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import db from '../models/index.js';
+import { v4 as uuidv4 } from 'uuid';
 import { Request, Response } from 'express';
 const Product = db.Product;
 
-// Create and Save a new Product
+
 const controller = {
+  // Create and Save a new Product
   create: async (req: Request, res: Response):Promise<any> => {
   try {
     // Validate request
@@ -18,15 +20,17 @@ const controller = {
         message: "Price cannot be empty!"
       });
     }
-    // Create a Product
+
     const product = {
+      id: uuidv4(),
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
-      category: req.body.category,
+      category: req.body.categoryId,
       stock: req.body.stock || 0,
       imageUrl: req.body.imageUrl
     };
+    
     // Save Product in the database
     const data = await Product.create(product);
     res.status(201).json(data);
@@ -37,6 +41,7 @@ const controller = {
   }
   },
 
+  // Retrieve all products
   findAll: async (req: Request, res: Response) => {
   try {
     const data = await Product.findAll();
@@ -48,6 +53,7 @@ const controller = {
   }
   },
 
+  // Find a single product with an id
   findOne: async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
@@ -68,6 +74,7 @@ const controller = {
   }
   },
 
+  // Update a Product by the id in the request
   update: async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
@@ -93,6 +100,7 @@ const controller = {
   }
   },
 
+  // Delete a Product with the specified id in the request
   delete: async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
@@ -118,6 +126,7 @@ const controller = {
   }
   },
 
+  // Delete all products
   deleteAll: async (req: Request, res: Response) => {
   try {
     const nums = await Product.destroy({
@@ -135,11 +144,12 @@ const controller = {
   }
   },
 
+  // Find products by category
   findByCategory: async (req: Request, res: Response) => {
   try {
-    const category = req.params.category;
+    const categoryId = req.params.categoryId;
     const data = await Product.findAll({
-      where: { category: category }
+      where: { category: categoryId }
     });
     res.json(data);
   } catch (err: any) {
