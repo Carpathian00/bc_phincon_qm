@@ -1,82 +1,134 @@
-// seeders/seed.ts
-import db from "../models/index.js";
-const Product = db.products;
+import { QueryInterface } from "sequelize";
+import { v4 as uuidv4 } from "uuid";
+import bcrypt from "bcrypt";
 
-// Initial product data
-const productData = [
-  {
-    name: "Smartphone X",
-    description: "Latest smartphone with advanced features",
-    price: 999.99,
-    category: "Electronics",
-    stock: 50,
-    imageUrl: "/api/placeholder/400/320"
-  },
-  {
-    name: "Laptop Pro",
-    description: "High-performance laptop for professionals",
-    price: 1299.99,
-    category: "Electronics",
-    stock: 25,
-    imageUrl: "/api/placeholder/400/320"
-  },
-  {
-    name: "Wireless Headphones",
-    description: "Premium noise-cancelling headphones",
-    price: 249.99,
-    category: "Audio",
-    stock: 100,
-    imageUrl: "/api/placeholder/400/320"
-  },
-  {
-    name: "Fitness Tracker",
-    description: "Track your activities and health metrics",
-    price: 129.99,
-    category: "Wearables",
-    stock: 75,
-    imageUrl: "/api/placeholder/400/320"
-  },
-  {
-    name: "Smart Watch",
-    description: "Stay connected with this feature-rich smartwatch",
-    price: 199.99,
-    category: "Wearables",
-    stock: 40,
-    imageUrl: "/api/placeholder/400/320"
-  }
-];
+export default {
+  async up(queryInterface: QueryInterface) {
+    const now = new Date();
+    const electronicsId = "id_category_" + "electronics";
+    const audioId = "id_category_" + "audio";
+    const wearablesId = "id_category_" + "wearables";
 
-// Seed the database
-const seedDatabase = async () => {
-    try {
-      // Create products
-      await Promise.all(
-        productData.map(async (product) => {
-          await Product.create(product);
-        })
-      );
-      
-      console.log("Database seeded successfully");
-    } catch (error) {
-      console.error("Error seeding database:", error);
-    }
-  };
-  
-  // If this file is run directly, seed the database
-  if (require.main === module) {
-    db.sequelize.sync({ force: true })
-      .then(() => {
-        console.log("Database synced");
-        return seedDatabase();
-      })
-      .then(() => {
-        console.log("Seeding completed");
-        process.exit(0);
-      })
-      .catch(err => {
-        console.error("Seeding failed:", err);
-        process.exit(1);
-      });
-  }
-  
-  module.exports = seedDatabase;
+    const hashedPasswordAdmin = await bcrypt.hash("admin123456", 12);
+    const hashedPasswordCashier = await bcrypt.hash("cashier123456", 12);
+    const adminId = uuidv4();
+    const transactionId = uuidv4();
+    const transactionDetailId = uuidv4();
+
+    const users = [
+      {
+        id: adminId,
+        username: "admin",
+        email: "admin@example.com",
+        password: hashedPasswordAdmin,
+        role: "admin",
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: uuidv4(),
+        username: "cashier",
+        email: "cashier@example.com",
+        password: hashedPasswordCashier,
+        role: "cashier",
+        createdAt: now,
+        updatedAt: now,
+      },
+    ];
+
+    const categories = [
+      {
+        id: electronicsId,
+        name: "Electronics",
+        createdAt: now,
+        updatedAt: now,
+      },
+      { 
+        id: audioId, 
+        name: "Audio", 
+        createdAt: now, 
+        updatedAt: now 
+      },
+      { 
+        id: wearablesId, 
+        name: "Wearables", 
+        createdAt: now, 
+        updatedAt: now },
+    ];
+
+    const product1Id = uuidv4();
+    const product2Id = uuidv4();
+
+    const products = [
+      {
+        id: product1Id,
+        name: "Wireless Headphones",
+        description: "Premium noise-cancelling headphones",
+        price: 249.99,
+        categoryId: audioId,
+        stock: 100,
+        imageUrl: "/api/placeholder/400/320",
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        id: product2Id,
+        name: "Fitness Tracker",
+        description: "Track your activities and health metrics",
+        price: 129.99,
+        categoryId: wearablesId,
+        stock: 75,
+        imageUrl: "/api/placeholder/400/320",
+        createdAt: now,
+        updatedAt: now,
+      },
+    ];
+
+    const transactions = [
+      {
+        id: transactionId,
+        userId: adminId,
+        cashierId: adminId,
+        totalPrice: 249.99 + 129.99,
+        createdAt: now,
+        updatedAt: now,
+      },
+    ];
+
+    const transactionDetails = [
+      {
+        id: transactionDetailId,
+        transactionId: transactionId,
+        products: JSON.stringify([
+          {
+            id: product1Id,
+            name: "Wireless Headphones",
+            price: 249.99,
+            qty: 1,
+          },
+          { id: product2Id, name: "Fitness Tracker", price: 129.99, qty: 1 },
+        ]),
+        createdAt: now,
+        updatedAt: now,
+      },
+    ];
+
+    await queryInterface.bulkInsert("users", users, {});
+    await queryInterface.bulkInsert("categories", categories, {});
+    await queryInterface.bulkInsert("products", products, {});
+    await queryInterface.bulkInsert("transactions", transactions, {});
+    await queryInterface.bulkInsert(
+      "transaction_details",
+      transactionDetails,
+      {}
+    );
+  },
+
+  async down(queryInterface: QueryInterface) {
+    await queryInterface.bulkDelete("transaction_details", {});
+    await queryInterface.bulkDelete("transactions", {});
+    await queryInterface.bulkDelete("products", {});
+    await queryInterface.bulkDelete("categories", {});
+    await queryInterface.bulkDelete("users", {});
+  },
+};

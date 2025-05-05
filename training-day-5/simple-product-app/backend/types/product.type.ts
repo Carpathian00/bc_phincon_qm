@@ -4,6 +4,8 @@ export interface ProductModel {
   description: string;
   price: number;
   stock: number;
-  category: string;
+  categoryId: string;
   imageUrl?: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
