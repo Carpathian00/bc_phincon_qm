@@ -42,7 +42,7 @@ export default (sequelize: Sequelize) => {
     {
       sequelize,
       modelName: "TransactionDetail",
-      tableName: "transactions_details",
+      tableName: "transaction_details",
     }
   );
 

@@ -9,11 +9,6 @@ export default (sequelize: Sequelize) => {
         foreignKey: "categoryId",
         as: "category",
       });
-
-      Product.hasMany(models.Cart, {
-        foreignKey: "productId",
-        as: "carts",
-      });
     }
   }
 

@@ -1,9 +1,10 @@
 import express from 'express';
 import products from '../controllers/product.controller.js';
+import { verifyToken, authorizeRole } from '../middleware/auth.middleware.js';
 const router = express.Router();
 
 // Create a new Product
-router.post("/", products.create);
+router.post("/", verifyToken, authorizeRole("admin"), products.create);
                 
 // Retrieve all Products
 router.get("/", products.findAll);

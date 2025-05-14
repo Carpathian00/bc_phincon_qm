@@ -1,0 +1,43 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.14.1",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.10",
+    "typescript": "^5.8.3"
+  },
+  "name": "course-importer-exporter-backend-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/server.js",
+    "dev": "npx tsc && nodemon dist/server.js",
+    "migrate": "npx tsc && npx sequelize-cli db:migrate",
+    "migrate:undo:all": "npx tsc && npx sequelize-cli db:migrate:undo:all",
+    "seed": "npx tsc && npx sequelize-cli db:seed:all",
+    "refresh": "rimraf src/dist && npx tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "products",
+    "sequelize",
+    "sql server"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

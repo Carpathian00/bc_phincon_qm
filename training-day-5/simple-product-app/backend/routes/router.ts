@@ -8,5 +8,6 @@ const appRouter = express.Router();
 appRouter.use('/api/products', productsRouter);
 appRouter.use('/api/categories', categoriesRouter);
 appRouter.use('/api/auth', authRouter);
+// appRouter.use('/api/transaction', transactionRouter);
 
 export default appRouter;

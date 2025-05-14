@@ -8,12 +8,14 @@ import { v4 as uuidv4 } from 'uuid';
 const User = db.User;
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-jwt-key';
 
+console.log(db.User);
+
 const authController = {
   // Register a new user
   register: async (req: Request, res: Response): Promise<void> => {
     try {
       const { username, email, password, role = 'cashier' } = req.body;
-
+        console.log("KE HIT");
       if (!username || !email || !password) {
         res.status(400).json({ message: "Username, email and password are required!" });
         return;

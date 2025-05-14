@@ -22,6 +22,7 @@ app.use(express.json());
 app.use(morgan('dev')); // Logging middleware
 
 // Routes
+console.log(appRouter);
 app.use(appRouter);
 
 // Root route
