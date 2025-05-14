@@ -47,7 +47,7 @@ export const userController = {
 
   downloadUsers: downloadHandler(User, "users", "Users", [
     { header: "ID", key: "id" },
-    { header: "Full Name", key: "fullname" },
+    { header: "Fullname", key: "fullname" },
     { header: "Username", key: "username" },
     { header: "Email", key: "email" },
     { header: "Phone Number", key: "phoneNumber" },

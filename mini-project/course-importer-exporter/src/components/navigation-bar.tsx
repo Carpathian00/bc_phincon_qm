@@ -4,7 +4,7 @@ const NavigationBar: React.FC = () => {
   return (
     <nav className="bg-blue-600 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white text-xl font-bold">MyApp</div>
+        <div className="text-white text-xl font-bold">Data Panel</div>
         <ul className="flex space-x-4">
           <li>
             <a href="users" className="text-white hover:text-gray-200">
