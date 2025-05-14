@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyToken, isAdmin } from '../Middleware/auth.middleware.js';
+import { verifyToken, isAdmin } from '../middleware/auth.middleware.js';
 
 // Example of how to create protected routes
 const router = express.Router();

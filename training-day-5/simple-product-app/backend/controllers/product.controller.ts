@@ -26,7 +26,7 @@ const controller = {
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
-      category: req.body.categoryId,
+      categoryId: req.body.categoryId,
       stock: req.body.stock || 0,
       imageUrl: req.body.imageUrl
     };

@@ -11,7 +11,10 @@ export default {
 
     const hashedPasswordAdmin = await bcrypt.hash("admin123456", 12);
     const hashedPasswordCashier = await bcrypt.hash("cashier123456", 12);
+    
     const adminId = uuidv4();
+    const cashierId = uuidv4();
+
     const transactionId = uuidv4();
     const transactionDetailId = uuidv4();
 
@@ -26,7 +29,7 @@ export default {
         updatedAt: now,
       },
       {
-        id: uuidv4(),
+        id: cashierId,
         username: "cashier",
         email: "cashier@example.com",
         password: hashedPasswordCashier,
@@ -87,8 +90,8 @@ export default {
     const transactions = [
       {
         id: transactionId,
-        userId: adminId,
-        cashierId: adminId,
+        userId: cashierId,
+        cashierId: cashierId,
         totalPrice: 249.99 + 129.99,
         createdAt: now,
         updatedAt: now,

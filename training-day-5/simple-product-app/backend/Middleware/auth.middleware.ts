@@ -74,6 +74,18 @@ export const verifyToken = (
   }
 };
 
+// Allowed Role
+export const authorizeRole = (...allowedRoles: string[]) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const userRole = req.user?.role;
+    if (!allowedRoles.includes(String(userRole))) {
+      res.status(403).json({ message: "Access denied: admin required" });
+      return
+    }
+    next();
+  };
+};
+
 // Middleware to check if user has admin role
 export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
   try {
