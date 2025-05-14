@@ -10,7 +10,7 @@ interface UIState {
 }
 
 export const useUIStore = create<UIState>((set) => ({
-    page: 0,
+    page: 1,
     setPage: (page) => set({ page }), 
 
     modalIsOpen: false,
