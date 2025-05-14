@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState, useRef } from "react";
+import { useUIStore } from "../stores/ui-store.ts";
 import axios from "axios";
 import * as XLSX from "xlsx";
 import PreviewModal from "./modals/preview-modal.tsx";
@@ -14,10 +15,13 @@ function MainUserPage() {
   const [importLoading, setImportLoading] = useState(false);
   const [previewData, setPreviewData] = useState<any[]>([]);
   const [headers, setHeaders] = useState<string[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
   const [importErrors, setImportErrors] = useState<string[]>([]);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
-  const [page, setPage] = useState(1);
+  const page = useUIStore((state) => state.page);
+  const setPage = useUIStore((state) => state.setPage);
+  const modalOpen = useUIStore((state) => state.modalIsOpen);
+  const openModal = useUIStore((state) => state.openModal);
+  const closeModal = useUIStore((state) => state.closeModal);
   const [totalPages, setTotalPages] = useState(1);
 
   const handleImportClick = () => fileInputRef.current?.click();
@@ -153,7 +157,7 @@ function MainUserPage() {
 
       setPreviewData(json);
       setHeaders(Object.keys(json[0] || {}));
-      setModalOpen(true);
+      openModal();
     };
 
     reader.readAsArrayBuffer(file);
@@ -176,11 +180,11 @@ function MainUserPage() {
       setImportLoading(true);
       await axios.post("http://localhost:3001/api/users/mass-create", { data: previewData });
       setImportLoading(false);
-      setModalOpen(false);
+      closeModal();
       fetchUsers(page);
     } catch (error: any) {
       setImportLoading(false);
-      setModalOpen(false);
+      closeModal();
 
       const errors = error.response?.data?.errors;
       if (errors?.length > 0) {
@@ -191,6 +195,7 @@ function MainUserPage() {
       }
     }
   };
+
   return (
     <div className="p-6 max-w-full">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
@@ -201,6 +206,7 @@ function MainUserPage() {
           <input type="file" accept=".xlsx,.xls" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
         </div>
       </div>
+
       {loading ? (
         <div className="text-center text-gray-500">Loading users...</div>
       ) : (
@@ -250,21 +256,19 @@ function MainUserPage() {
                 )}
               </tbody>
             </table>
-            <PreviewModal isOpen={modalOpen} onClose={() => setModalOpen(false)} onConfirm={confirmImport} data={previewData} headers={headers} isLoading={importLoading} />
+            <PreviewModal isOpen={modalOpen} onClose={closeModal} onConfirm={confirmImport} data={previewData} headers={headers} isLoading={importLoading} />
             {errorModalOpen && <ImportErrorModal errors={importErrors} onClose={() => setErrorModalOpen(false)} />}
           </div>
         </div>
       )}
 
       <div className="flex justify-center mt-4 space-x-2">
-        <button onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Prev</button>
+        <button onClick={() => setPage(Math.max(1, page - 1))} disabled={page === 1} className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Prev</button>
         <span className="px-4 py-1">{`Page ${page} of ${totalPages}`}</span>
-        <button onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Next</button>
+        <button onClick={() => setPage(Math.min(totalPages, page + 1))} disabled={page === totalPages} className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Next</button>
       </div>
     </div>
   );
 }
 
 export default MainUserPage;
-
-
